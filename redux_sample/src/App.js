@@ -1,7 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
+import { connect } from 'react-redux'
 
-function App() {
+function App(props) {
+  // 関数の引数としてpropsを用いる必要がある。
   return (
     <div className="App">
       <header className="App-header">
@@ -15,11 +17,16 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Welcome {props.username}
         </a>
       </header>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  username: state.user.username
+})
+// propsとして使えるようにする為に必要な関数
+
+export default connect(mapStateToProps)(App);
